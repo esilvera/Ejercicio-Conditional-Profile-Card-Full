@@ -30,41 +30,26 @@ function render(variables = {}) {
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   // reset the website body with the new html output
-  document.querySelector("#widget_content").innerHTML = `<div class="widget">
-            ${cover}
+  document.querySelector("#widget_content").innerHTML = `<div class="widget">${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name == null ? "Lucy" : variables.name} ${
-    variables.lastname == null ? " " : variables.lastname
-  } </h1>
+          <h1>${variables.name == null ? "Lucy" : variables.name} ${variables.lastname == null ? " " : variables.lastname} </h1>
           <h2>${variables.role == null ? "Web Developer" : variables.role}</h2>
-          <h3>${variables.city == null ? "Miami" : variables.city}, ${
-    variables.country == null ? "USA" : variables.country
-  }</h3>
+          <h3>${variables.city == null ? "Miami" : variables.city}, ${variables.country == null ? "USA" : variables.country}</h3>
           <ul class="position-right">
-          <li><a target="_blank" href="https://twitter.com/${
-            variables.twitter == null ? "alesanchezr" : variables.twitter
-          }"><i class="fa fa-twitter"></i></a></li>
+          <li><a target="_blank" href="https://twitter.com/${variables.twitter == null ? "alesanchezr" : variables.twitter}"><i class="fa fa-twitter"></i></a></li>
 
-            <li><a target="_blank" href="https://github.com/${
-              variables.github == null ? "alesanchezr" : variables.github
-            }"><i class="fa fa-github"></i></a></li>
+            <li><a target="_blank" href="https://github.com/${variables.github == null ? "alesanchezr" : variables.github}"><i class="fa fa-github"></i></a></li>
 
-            <li><a target="_blank" href="https://linkedin.com/in/${
-              variables.linkedin == null ? "alesanchezr" : variables.linkedin
-            }"><i class="fa fa-linkedin"></i></a></li>
+            <li><a target="_blank" href="https://linkedin.com/in/${variables.linkedin == null ? "alesanchezr" : variables.linkedin}"><i class="fa fa-linkedin"></i></a></li>
 
-            <li><a target="_blank" href="https://instagram.com/${
-              variables.instagram == null ? "alesanchezr" : variables.instagram
-            }"><i class="fa fa-instagram"></i></a></li>
+            <li><a target="_blank" href="https://instagram.com/${variables.instagram == null ? "alesanchezr" : variables.instagram}"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
-    `;
-}
-
+};
 /**
  * Don't change any of the lines below, here is where we do the logic for the dropdowns
  */
-window.onload = function() {
+window.onload = function () {
   window.variables = {
     // if includeCover is true the algorithm should
     includeCover: true,
@@ -87,8 +72,8 @@ window.onload = function() {
   };
   render(window.variables); //render the card for the first time
 
-  document.querySelectorAll(".picker").forEach(function(elm) {
-    elm.addEventListener("change", function(e) {
+  document.querySelectorAll(".picker").forEach(function (elm) {
+    elm.addEventListener("change", function (e) {
       // <- add a listener to every input
       const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
       let values = {};
@@ -96,10 +81,10 @@ window.onload = function() {
         this.value == "" || this.value == "null"
           ? null
           : this.value == "true"
-          ? true
-          : this.value == "false"
-          ? false
-          : this.value;
+            ? true
+            : this.value == "false"
+              ? false
+              : this.value;
       render(Object.assign(window.variables, values)); // render again the card with new valus
     });
   });
